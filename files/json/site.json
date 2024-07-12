@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "nome": "Anime Center Br",
+    "url": "https://animecenterbr.com/",
+    "template" : "-capitulo-{numCap}/"
+  },
+  {
+    "id": 2,
+    "nome": "Novel Translate",
+    "url": "https://noveltranslate.com/",
+    "template" : "novel/{0}/chapter-{1}/"
+  },
+  {
+    "id": 3,
+    "nome": "novelfire",
+    "site": "https://novelfire.me/",
+    "novel_metadada": "book/{novel_name}/",
+    "novel_caption": "chapter-{cap}"
+  }
+]
