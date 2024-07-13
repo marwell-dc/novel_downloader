@@ -1,3 +1,4 @@
+import platform
 import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import Image, ImageTk
@@ -5,6 +6,7 @@ from PIL import Image, ImageTk
 # Constantes
 API_OPTION_CHATGPT = "ChatGPT"
 API_OPTION_LM_STUDIO = "LM Studio"
+API_OPTION_OLLAMA = "Ollama"
 FORMAT_EPUB = "Epub"
 FORMAT_PDF = "PDF"
 
@@ -81,19 +83,27 @@ def validate_numeric_input(action, value_if_allowed):
     return action != '1' or value_if_allowed.isdigit()
 
 
+def windows_size():
+    if platform.system() != "Darwin":
+        return "510x550"
+    else:
+        return "685x610"
+
+
 def create_interface():
     """Função para criar e configurar a interface gráfica."""
     global entry_api_key, entry_name, entry_site, entry_start_chapter, entry_end_chapter, entry_chapters_per_file, var_format, text_log, entry_save_location, metadata_var, option_var, label_api_key
 
     root = tk.Tk()
     root.title("Novel Downloader")
-    root.geometry("510x550")
+    root.geometry(windows_size())
     root.resizable(False, False)
 
     # Seção de seleção de opção
     ttk.Label(root, text="Selecione a Opção:").grid(column=0, row=0, padx=10, pady=5, sticky="W")
     option_var = tk.StringVar(value=API_OPTION_CHATGPT)
-    option_menu = ttk.Combobox(root, textvariable=option_var, values=[API_OPTION_CHATGPT, API_OPTION_LM_STUDIO], state="readonly")
+    option_menu = ttk.Combobox(root, textvariable=option_var, values=[API_OPTION_CHATGPT, API_OPTION_LM_STUDIO,
+                                                                      API_OPTION_OLLAMA], state="readonly")
     option_menu.grid(column=1, row=0, padx=10, pady=5, sticky="EW")
     option_menu.bind("<<ComboboxSelected>>", update_interface)
 
